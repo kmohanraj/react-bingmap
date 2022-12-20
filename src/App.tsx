@@ -1,12 +1,16 @@
 import React from 'react';
-import './App.css';
+import MapView from './Map';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>React</h1>
+       
       </header>
+      <div className='container'>
+        <MapView />
+      </div>
     </div>
   );
 }
