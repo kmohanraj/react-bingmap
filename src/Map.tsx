@@ -1,5 +1,4 @@
 import React, { FC, useCallback, useEffect } from "react";
-import Icon from './images/legend-fm.svg'
 import pushPins from '../src/MockPushPins.json'
 
 
@@ -12,16 +11,24 @@ type ContentType = {
   description: DescriptionType
 }
 
-const MapView: FC<any> = () => {
+type MapViewType = {
+  mapType: string
+  centerLocation: [number, number],
+  initZoom: number
+}
+
+const MapView: FC<MapViewType> = ({ mapType, centerLocation, initZoom }) => {
   
   let myWin = window as any
   const initMap = useCallback(() => {
     var Maps = myWin.Microsoft.Maps
     var map = new Maps.Map('#bing-map', {
       credentials: process.env.REACT_APP_BING_KEY,
-      center: new Maps.Location(20.5937, 78.9629),
+      center: new Maps.Location(centerLocation[0], centerLocation[1]),
       // bounds: Maps.LocationRect.fromEdges(49.234, 24.175, -65.573, -125.778),
-      zoom: 5
+      mapTypeId: Maps.MapTypeId[mapType],
+      showLogo: false,
+      zoom: initZoom
     })
     let infobox = new Maps.Infobox(map.getCenter(), {
       visible: false

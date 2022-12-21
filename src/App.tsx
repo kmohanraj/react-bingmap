@@ -9,7 +9,11 @@ function App() {
        
       </header>
       <div className='container'>
-        <MapView />
+        <MapView
+          mapType='grayscale'
+          centerLocation={[20.5937, 78.9629]}
+          initZoom={5}
+        />
       </div>
     </div>
   );
